@@ -1,0 +1,183 @@
+body{
+  background-color: #f3f5f7;
+
+  //sign in page
+  .signin-wrap-page{
+    width: 100%;
+    
+    .signin-title{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+  
+    //wrap email sign in
+    .wrap-email-signin{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      #email-signin{
+        width: 350px;
+        padding: 7px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+      }
+    }
+
+    //button sign in
+    .wrap-button-signin{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      button{
+        width: 360px;
+        padding: 7px;
+        background-color: #ffa43c;
+        border: none;
+        border-radius: 2px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  //wrap-button get one time code 
+  .wrap-button-getonetimesignin {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      button{
+        padding: 7px;
+        border: 1px solid #ccc;
+        width: 360px;
+      }
+  }
+  //wrap what the one time code 
+  .wrap-what-the-one-time{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      p{
+        text-decoration: underline;
+        color: rgb(145, 143, 143);
+      }
+  }
+  //wrap sign up 
+  .wrap-sign-up{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    .wrap-link-signup{
+      font-weight: bold;
+      a{
+        color: black;
+      }
+    }
+  }
+  //or text 
+  .wrap-or-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p{
+      color: rgb(145, 143, 143);
+    }
+  }
+  //btn sign in google 
+  .wrap-btn-signin-google{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    button{
+      display: flex;
+      background-color: #fff;
+      border-radius: 3px;
+      box-sizing: border-box;
+      border: 1px solid #d9d9d9;
+      color: #222;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      height: 54px;
+      justify-content: center;
+      width: 360px;
+      img{
+        margin: auto 0;
+        display: block;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        left: -17%;
+      }
+    }
+  }
+  //wrpa btn sign in apple 
+  .wrap-btn-signin-apple{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    button{
+      display: flex;
+      background-color: #fff;
+      border-radius: 3px;
+      box-sizing: border-box;
+      border: 1px solid #d9d9d9;
+      color: #222;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      height: 54px;
+      justify-content: center;
+      width: 360px;
+    }
+    img{
+      margin: auto 0;
+      display: block;
+      width: 30px;
+      height: 30px;
+      position: relative;
+      left: -17%;
+    }
+  }
+  
+}
+
+//logo wrapping 
+.wrap-logo{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    width: 130px;
+    height: 64px;
+  }
+}
+
+//footer box 
+.footer-box{
+  margin-top: 30px;
+  //terms n privacy box 
+  .terms-n-privacy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    div{
+      margin: 5px;
+    }
+  }
+  .copyright-box{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

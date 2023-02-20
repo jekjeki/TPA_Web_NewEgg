@@ -1,0 +1,23 @@
+.carousel-control{
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    display: inline-block;
+    position: absolute;
+    height: 50px;
+    width: 70px;
+    top: calc(50% - 25px);
+    color: #f3f3f3;
+    cursor: pointer;
+
+    
+}
+
+.left {
+        
+    left: 200px;
+  }
+  .right {
+    // position: relative
+    right: 0;
+    
+  }

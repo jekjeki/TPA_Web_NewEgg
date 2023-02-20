@@ -1,0 +1,119 @@
+.wrap-flex-box{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: -50px;
+
+    .user-name-login {
+        width: 340px;
+        margin: 10px;
+        box-shadow: 0 0 10px 0 rgb(161, 161, 161);
+        border-radius: 7px;
+        background-color: white;
+        
+        .title{
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+            width: 100%;
+            p{
+               margin-left: 10px;
+            }
+        }
+
+        .btn-signin{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrap-signup{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            p{
+                margin: 5px 2px;
+            }
+        }
+    }
+
+    .recently-viewed {
+        width: 340px;
+        margin: 10px;
+        // height: 100px;
+        box-shadow: 0 0 10px 0 rgb(161, 161, 161);
+        border-radius: 7px;
+        font-weight: bold;
+        font-style: italic;
+        background-color: white;
+        p{
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+            // margin-right: 5px;
+        }
+
+        .wrap-image{
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            .img{
+                img{
+                    width: 115px;
+                    height: 87px;
+                }
+            }
+        }
+
+        .wrap-title{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            p{
+                font-size: 10px;
+            }
+            
+        }
+    }
+
+    .product-interested-in{
+        width: 340px;
+        margin: 10px;
+        
+        box-shadow: 0 0 10px 0 rgb(161, 161, 161);
+        border-radius: 7px;
+        background-color: white;
+        font-weight: bold;
+        font-style: italic;
+        p{
+            margin-right: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+            margin-right: 5px;
+        }
+
+        .wrap-product-interest{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+
+            img{
+                width: 115px;
+                height: 87px;
+            }
+        }
+
+    }
+
+    
+
+    
+}

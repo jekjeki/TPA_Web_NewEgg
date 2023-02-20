@@ -1,0 +1,35 @@
+.wrap-form-blast{
+    border: 1px solid orange;
+    padding: 10px;
+    min-width: 400px;
+    border-radius: 5px;
+    background-color: white;
+    .wrap-input{
+        .input{
+            width: 100%;
+            input{
+                width: 97%;
+                padding: 5px;
+            }
+            textarea{
+                width: 97%;
+            }
+        }
+
+        .wrap-btn{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            button{
+                width: 90%;
+                padding: 5px;
+                border: none;
+                background-color: orange;
+                font-weight: bold;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}

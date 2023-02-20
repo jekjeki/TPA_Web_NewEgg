@@ -1,0 +1,65 @@
+.wrap-title{
+    width: 100%;
+    h3{
+        text-align: center;
+    }
+}
+
+.wrap-list-users-page{
+    
+    margin-top: 30px;
+    overflow-x: auto;
+
+   
+
+    table{
+        margin: auto;
+        box-shadow: 0 0 20px rgb(147, 145, 145);
+        
+        border-collapse: collapse;
+        thead{
+            tr{
+                background-color: #FFB84C;
+                color: #fff;
+                text-align: left;
+                th{
+                    padding: 12px 15px;
+                }
+            }
+        }
+        tbody tr{
+            border-bottom: 1px solid #ddd;
+            td{
+                padding: 10px 8px;
+            }
+        }
+
+        .tr-active:active{
+            background-color: grey;
+            
+        }
+    }
+
+}
+
+.wrap-btn-ban{
+    display: flex;
+    justify-content: center;
+    .ban-btn{
+        background-color: rgb(255, 9, 9);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 7px;
+        margin: 0 20px ;
+    }
+
+    .unban-btn{
+        background-color: rgb(51, 51, 164);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 7px;
+        margin: 0 20px ;
+    }
+}

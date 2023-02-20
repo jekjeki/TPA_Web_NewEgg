@@ -1,0 +1,42 @@
+.wrap-blast-email-page{
+    width: 100%;
+
+    .table-list-user-check{
+
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+
+        table{
+            border-collapse: collapse;
+            box-shadow: 0 0 20px rgb(205, 205, 205);
+            thead{
+                tr{
+                    background-color: orange;
+                    th{
+                        padding: 5px;
+                    }
+                }
+            }
+    
+            //tbody
+            tbody{
+                tr{
+                    border-bottom: 1px solid #ddd;
+                    td{
+                        padding: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    .wrap-form-fill{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+}

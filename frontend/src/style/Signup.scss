@@ -1,0 +1,177 @@
+.signup-page{
+    .wrap-signup-comp{
+
+        .signup-body{
+                .wrap-signup-body-comp{
+                    width: 360px;
+                    margin: auto;
+                    .wrap-signup-title{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        p{
+                            font-weight: bold;
+                        }
+                    }
+                    //first name textfield 
+                    .wrap-first-name-signup{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 10px;
+                        input {
+                            width: 350px;
+                            padding: 7px;
+                            border: 1px solid #ccc;
+                            border-radius: 2px;
+                        }
+                    }
+                    //lastname text field 
+                    .wrap-last-name-signup{
+                        margin-top: 10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        input{
+                            width: 350px;
+                            padding: 7px;
+                            border: 1px solid #ccc;
+                            border-radius: 2px;
+                        }            
+                    }
+                    //wrap email signup
+                    .wrap-email-signup{
+                        margin-top: 10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        input{
+                            width: 350px;
+                            padding: 7px;
+                            border: 1px solid #ccc;
+                            border-radius: 2px;
+                        }
+                    }
+                    //wrap mobile number 
+                    .wrap-mobile-signup{
+                        margin-top: 10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        input{
+                            width: 350px;
+                            padding: 7px;
+                            border: 1px solid #ccc;
+                            border-radius: 2px;
+                        }
+                    }
+                    //wrap password signup
+                    .wrap-password-signup{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 10px;
+                        input{
+                            width: 350px;
+                            padding: 7px;
+                            border: 1px solid #ccc;
+                            border-radius: 2px;
+                        }
+                        .eye-icon-wrap{
+                           display: flex;
+                           justify-content: center;
+                           margin-bottom: 10px;
+                           .eye-icon-logo{
+                            position: absolute;
+                            z-index: 1000;
+                            padding-right: 20px;
+                           }
+                        }
+                    }
+
+                    //wrap title password terms 
+                    .wrap-password-terms{
+                        .wrap-password-terms-title{
+                            font-size: 12px;
+                            display: flex;
+                            #first-text{
+                               margin: 1em 5em 0 0;
+                            }
+                        }
+                        .wrap-term-items{
+                            font-size: 12px;
+                            display: flex;
+                            .ABC{
+                                display: flex;
+                                margin: 0 10px;
+                                p{
+                                    margin: 0;
+                                }
+                            }
+                            .abc{
+                                display: flex;
+                                margin: 0 10px;
+                                p{
+                                    margin: 0;
+                                }
+                            }
+                            .p123{
+                                display: flex;
+                                margin: 0 10px;
+                                p{
+                                    margin: 0;
+                                }
+                            }
+                            .spec-char{
+                                display: flex;
+                                margin: 0 10px;
+                                p{
+                                    margin: 0;
+                                }
+                            }
+                            .chars{
+                                display: flex;
+                                margin: 0 10px;
+                                p{
+                                    margin: 0;
+                                }
+                            }
+                        }
+                    }
+                    //wrap subscribe email discount
+                    .subscribe-terms{
+                        font-size: 15px;
+                        margin-top: 40px;
+                        display: flex;
+                        p{
+                            margin-left: 15px;
+                        }
+                    }
+                    //by create account
+                    .by-creating-account{
+                        margin-top: 10px;
+                        font-size: 15px;
+                    }
+                    .wrap-btn-signup{
+                        button{
+                            width: 100%;
+                            padding: 8px;
+                            border: none;
+                            border-radius: 3px;
+                            background-color: #ffa43c;
+                            font-weight: bold;
+                        }
+                    }
+                    //direct signin
+                    .wrap-direct-signin{
+                        width: 100%;
+                        p{
+                            text-align: center;
+                        }
+                    }
+                }
+            
+        }
+    }
+    
+}

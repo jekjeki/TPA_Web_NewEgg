@@ -1,0 +1,168 @@
+.wrap-management-menu{
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    //box menu 1
+    .box-menu{
+        width: 200px;
+        height: 150px;
+        background-color: #1C315E;
+        position: relative;
+        border-radius: 10px;
+        border: 1px solid black;
+        margin: 10px;
+        
+        .ticket{
+            color: white;
+            width: 30px;
+            height: 30px;
+            margin: 5px 10px;
+        }
+
+        div{
+            position: absolute;
+            bottom: 0;
+            background-color: #EFF5F5;
+            width: 100%;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+
+    //box menu 2
+    .box-menu-2{
+        width: 200px;
+        height: 150px;
+        background-color: #1C315E;
+        position: relative;
+        border-radius: 10px;
+        border: 1px solid black;
+        margin: 10px;
+        .users{
+            color: white;
+            width: 30px;
+            height: 30px;
+            margin: 5px 10px;
+        }
+        div{
+            position: absolute;
+            bottom: 0;
+            background-color: #EFF5F5;
+            width: 100%;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+
+    //box menu 3 
+    .box-menu-3{
+        width: 200px;
+        height: 150px;
+        background-color: #1C315E;
+        position: relative;
+        border-radius: 10px;
+        border: 1px solid black;
+        margin: 10px;
+        .shops{
+            color: white;
+            width: 30px;
+            height: 30px;
+            margin: 5px 10px;
+        }
+        div{
+            position: absolute;
+            bottom: 0;
+            background-color: #EFF5F5;
+            width: 100%;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+
+    //box menu -4
+    .box-menu-4{
+        width: 200px;
+        height: 150px;
+        background-color: #1C315E;
+        position: relative;
+        border-radius: 10px;
+        border: 1px solid black;
+        margin: 10px;
+        .stars{
+            color: white;
+            width: 30px;
+            height: 30px;
+            margin: 5px 10px;
+        }
+        div{
+            position: absolute;
+            bottom: 0;
+            background-color: #EFF5F5;
+            width: 100%;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+
+    //box menu 5
+    .box-menu-5{
+        width: 200px;
+        height: 150px;
+        background-color: #1C315E;
+        position: relative;
+        border-radius: 10px;
+        border: 1px solid black;
+        margin: 10px;
+        .advertise{
+            color: white;
+            width: 30px;
+            height: 30px;
+            margin: 5px 10px;
+        }
+        div{
+            position: absolute;
+            bottom: 0;
+            background-color: #EFF5F5;
+            width: 100%;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+
+    //box menu 6
+    .box-menu-6{
+        width: 200px;
+        height: 150px;
+        background-color: #1C315E;
+        position: relative;
+        border-radius: 10px;
+        border: 1px solid black;
+        margin: 10px;
+        .email{
+            color: white;
+            width: 30px;
+            height: 30px;
+            margin: 5px 10px;
+        }
+        div{
+            position: absolute;
+            bottom: 0;
+            background-color: #EFF5F5;
+            width: 100%;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+}

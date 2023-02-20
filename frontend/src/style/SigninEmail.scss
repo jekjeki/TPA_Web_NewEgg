@@ -1,0 +1,71 @@
+.signinpassword-wrap-page{
+
+    width: 100%;
+
+    .wrap-pw-signin-comp {
+        
+        width: 400px;
+        margin: 0 auto;
+        
+        .wrap-image-pw-signin{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 130px;
+                height: 64px;
+            }
+        }
+    
+        .wrap-title-pw-signin {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            p{
+                font-weight: bold;
+            }
+        }
+
+        .wrap-back-signin{
+            margin-top: 10px;
+            display: flex;
+            margin: 0 0 0 5%;
+            div{
+                padding: 0 10px;
+            }
+        }
+
+        .wrap-pw-input-signin {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            input {
+                margin-top: 10px;
+                width: 350px;
+                padding: 7px;
+                border: 1px solid #ccc;
+                border-radius: 2px;
+            }
+        }
+
+        .wrap-btn-login{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            button{
+                width: 360px;
+                padding: 7px;
+                background-color: #ffa43c;
+                border: none;
+                border-radius: 2px;
+                font-weight: bold;
+            }
+        }
+
+    }
+
+    
+}
