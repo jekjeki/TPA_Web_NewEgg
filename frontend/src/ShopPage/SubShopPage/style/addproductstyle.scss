@@ -1,0 +1,41 @@
+.wrap-add-page{
+    .header{
+        text-align: center;
+    }
+
+    .body{
+        display: flex;
+        justify-content: center;
+        min-height: 70vh;
+        .form-add-product{
+            width: 500px;
+            border: 1px solid black;
+            border-radius: 3px;
+            input{
+                width: 90%;
+                padding: 5px;
+            }
+            p{
+                margin-bottom: 0;
+            }
+            div{
+                padding-left: 10px;
+            }
+
+            .wrap-btn-add{
+                display: flex;
+                margin: 10px 0;
+                justify-content: center;
+                button{
+                    width: 75%;
+                    cursor: pointer;
+                    background-color: orange;
+                    border: none;
+                    font-weight: bold;
+                    border-radius: 3px;
+                    padding: 8px;
+                }
+            }
+        }
+    }
+}

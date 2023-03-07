@@ -1,0 +1,53 @@
+.user-footer{
+    .top-footer{
+        h4{
+            color: white;
+        }
+        p{
+            color: white;
+        }
+        background-color: #2F58CD;
+        width: 100%;
+        .wrap-footer-menu{
+            display: flex;
+            .customer-service{
+                margin: 5px 30px;
+                width: 15%;
+            }
+            .my-account{
+                margin: 5px 30px;
+                width: 15%;
+            }
+            .company-information{
+                margin: 5px 30px;
+                width: 15%;
+            }
+            .tools{
+                margin: 5px 30px;
+                width: 15%;
+            }
+            .shop-our-brands{
+                margin: 5px 30px;
+                width: 15%;
+            }
+        }
+    }
+    .bottom-footer{
+        .copyright{
+            display: flex;
+            a{
+                text-decoration: none;
+                color: black;
+                margin: 10px 20px
+            }
+            .wrap-link{
+                display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    min-height: 10vh;
+            }
+        }
+    }
+}

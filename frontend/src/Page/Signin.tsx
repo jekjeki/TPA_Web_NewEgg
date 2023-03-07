@@ -14,6 +14,11 @@ export default function Signin() {
     const [firstname, setFirstname] = useState('')
     const [lastname, setLastname] = useState('')
 
+    const [shopEmail, setShopEmail] = useState('')
+    const [shopName, setShopName] = useState('')
+    const [shopEmailStatus, setShopEmailStatus] = useState('')
+    const [shopId, setShopId] = useState('')
+
     const navigate = useNavigate()
 
     let nextInputPassword = async () => {
@@ -40,8 +45,33 @@ export default function Signin() {
         if(status=='success')
         {
             navigate('/signin-password', {state: {email:email, role: role, firstname: firstname, lastname: lastname}})
-
+            return
         }
+
+        await fetch('http://localhost:8000/api/auth/signinemail-shop',{
+            method: 'POST',
+            body: JSON.stringify({
+                shopemail: loginEmail                 
+            }),
+            headers: {
+                'Content-type':'application/json;charset=UTF-8'
+            }
+        })
+        .then((res)=>res.json())
+        .then((data)=>{
+            console.log(data)
+            setShopEmail(data.shop_email)
+            setShopName(data.shop_name)
+            setShopEmailStatus(data.status)
+            setShopId(data.shop_id)
+        })
+
+        if(shopEmailStatus === 'success')
+        {
+            navigate('/signin-password', {state: {email:shopEmail, shopname: shopName, shopid: shopId}})
+            return;
+        }
+        
     }
 
 

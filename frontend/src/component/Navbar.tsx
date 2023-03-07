@@ -13,29 +13,18 @@ import {
 import neweggLogo from "../asset/logo/logo-newegg.png";
 import indonesiaNation from "../asset/logo/indonesia.png";
 import { faMessage } from "@fortawesome/free-regular-svg-icons";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 
 export default function Navbar() {
 
   const [getLocation, setLocation] = useState('')
-  const [accessToken, setAccessToken] = useState('')
   const [firstName, setFirstName] = useState('') 
-  const [status, setStatus] = useState('')
 
-  const getToken = async () => {
-    await fetch('http://localhost:8000/api/auth/refresh', {
-      method:'GET',
-      headers: {
-        'Content-type':'application/json;charset=UTF-8'
-      }
-    })
-    .then((res)=>res.json())
-    .then((data)=>{
-      console.log(data.status)
-      setStatus(data.status)
-    })
-  }
-  
+  const navigate = useNavigate()
+  const [clickProfile, setClickProfile] = useState<boolean>(false)
+  const [status, setStatus] = useState<string>('')
+
+  //currr country 
   const getCurrCountry = async () => {
     await fetch(
       "https://api.ipregistry.co/2001:448a:2003:e47:5cba:3fca:d01c:f8f?key=pfwcwlawvw8v976i"
@@ -46,13 +35,26 @@ export default function Navbar() {
     });
   };
 
-  const navigate = useNavigate()
-  const location = useLocation()
+  //get curr login data
+  const getLoginData = async () => {
+    // setFirstName((firstName === '')?'':location.state.firstname)
+    await fetch("http://localhost:8000/api/users/me", {
+      method: 'GET',
+      headers: {
+        'Content-type':'application/json;charset=UTF-8'
+      }
+    })
+    .then((res)=>res.json())
+    .then((data)=>{
+      console.log(data)
+      setFirstName(data.data.user.first_name)
+      setStatus(data.status)
+    })
+  }
 
   useEffect(()=>{
     getCurrCountry()
-    getToken()
-
+    getLoginData()
   }, [])
 
   return (
@@ -61,7 +63,9 @@ export default function Navbar() {
         <div className="wrap-subnavbar-top">
           <FontAwesomeIcon icon={faBars} id="fa-list" />
           <div className="wrap-logo-newegg">
-            <img src={neweggLogo} alt="neweggLogo" />
+            <Link to={'/'}>
+              <img src={neweggLogo} alt="neweggLogo" />
+            </Link>
           </div>
           <div className="wrap-location">
             <div className="location-svg">
@@ -69,7 +73,7 @@ export default function Navbar() {
             </div>
             <div className="location">
               <p id="deliver-to">Deliver to</p>
-              <p>{(status != 'fail') ? getLocation : `curr location`}</p>
+              <p>{(firstName !== '') ? getLocation : `curr location`}</p>
             </div>
           </div>
           <div className="wrap-search">
@@ -104,9 +108,18 @@ export default function Navbar() {
               <div className="welcome">
                 <p>Welcome</p>
               </div>
-              <div className="name-user-login" onClick={()=>navigate('/signin')}>
-                <p>{(status == 'fail') ? `Sign in / Register` : firstName}</p>
+              <div className="name-user-login" onClick={()=>(firstName === '')?navigate('/signin'):(status === 'success')?setClickProfile(!clickProfile):''}>
+                <p>{(firstName === '') ? `Sign in / Register` : firstName}</p>
               </div>
+              {
+                clickProfile && (
+                  <div className="floating-button-profile">
+                      <div className="wrap-wishlist">
+                        <Link to={'/wish-list'}><p>Wish List</p></Link>
+                      </div>
+                  </div>
+                )
+              }
             </div>
             <div className="wrap-return-order">
               <div className="return">

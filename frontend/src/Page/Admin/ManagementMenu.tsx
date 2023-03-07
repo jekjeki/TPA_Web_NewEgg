@@ -26,7 +26,7 @@ export default function ManagementMenu() {
             <div className='box-menu-3'>
                 <FontAwesomeIcon icon={faShop} className='shops' />
                 <div>
-                    <p><Link to={'#'}>Shops</Link></p>
+                    <p><Link to={'/shop-dashboard'}>Shops</Link></p>
                 </div>
             </div>
             <div className='box-menu-4'>
@@ -38,7 +38,7 @@ export default function ManagementMenu() {
             <div className='box-menu-5'>
                 <FontAwesomeIcon icon={faAd} className='advertise' />
                 <div>
-                    <p><Link to={'#'}>Promotions</Link></p>
+                    <p><Link to={'/manage-promotions'}>Promotions</Link></p>
                 </div>
             </div>
             <div className='box-menu-6'>

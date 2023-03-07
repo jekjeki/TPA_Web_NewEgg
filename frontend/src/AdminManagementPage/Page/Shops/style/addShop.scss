@@ -1,0 +1,51 @@
+.wrap-addshop-dashboard{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    .form-add{
+        h3{
+            text-align: center;
+        }
+        margin-top: 20px;
+        background-color: #ddd;
+        min-width: 500px;
+        border: 1px solid black;
+        border-radius: 5px;
+        .wrap-input{
+            margin: 30px 20px;
+            input{
+                width: 95%;
+                padding: 4px;
+            }
+        }
+
+        .wrap-button{
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            
+            button{
+                width: 96%;
+                padding: 10px;
+                color: black;
+                font-weight: bold;
+                background-color: #FFB84C;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+
+   
+
+}
+
+@media screen and (max-width: 375px){
+    .wrap-addshop-dashboard{
+        .form-add{
+            margin-top: 20px;
+            min-width: 300px;
+        }
+    }
+}

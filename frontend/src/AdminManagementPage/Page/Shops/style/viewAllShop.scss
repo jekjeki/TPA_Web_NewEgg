@@ -1,0 +1,80 @@
+.wrap-viewshop-page{
+    width: 100%;
+    .header{
+        display: flex;
+
+        .wrap-filter{
+            .bars{
+                display: none;
+            }
+            .wrap-filter-banned-shop{
+                display: flex;
+            }
+            .wrap-filter-active-shop{
+                display: flex;
+            }
+        }
+    }
+    .body{
+        .wrap-table{
+            display: flex;
+            justify-content: center;
+            overflow-y: auto;
+            table{
+                border-collapse: collapse;
+               
+                thead{
+                    background-color: orange;
+                }
+            }
+        }
+
+        .wrap-ban-shop{
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            .ban-shop{
+                padding: 30px;
+
+                button{
+                    padding: 5px;
+                    background-color: red;
+                    border: none;
+                    color: white;
+                    border-radius: 3px;   
+                    cursor: pointer;
+                }
+            }
+            .unban-shop{
+                padding: 30px;
+
+                button{
+                    padding: 5px;
+                    background-color: rgb(97, 153, 97);
+                    border: none;
+                    color: white;
+                    border-radius: 3px;   
+                    cursor: pointer;
+                }
+            }
+
+            
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    
+    .bars{
+        display: block;
+    }
+
+    .wrap-filter{
+        display: none;
+    }
+    
+    table{
+        margin-top: 40px;
+    }
+    
+}

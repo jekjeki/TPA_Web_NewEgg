@@ -9,3 +9,9 @@ type CategoryResponse struct {
 	ID           string `json:"id,omitempty"`
 	CategoryName string `json:"category_name,omitempty"`
 }
+
+// category for filter product in store
+type CategoryInputFilterStore struct {
+	ID        string `json:"categoryid" binding:"required"`
+	ShopEmail string `json:"shopemail" binding:"required"`
+}

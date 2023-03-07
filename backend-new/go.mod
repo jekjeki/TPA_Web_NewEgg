@@ -7,6 +7,23 @@ require github.com/spf13/viper v1.15.0
 require github.com/gin-contrib/cors v1.4.0
 
 require (
+	github.com/andybalholm/brotli v1.0.4 // indirect
+	github.com/gofiber/fiber/v2 v2.42.0 // indirect
+	github.com/google/uuid v1.3.0 // indirect
+	github.com/klauspost/compress v1.15.9 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-runewidth v0.0.14 // indirect
+	github.com/philhofer/fwd v1.1.1 // indirect
+	github.com/rivo/uniseg v0.2.0 // indirect
+	github.com/savsgio/dictpool v0.0.0-20221023140959-7bf2e61cea94 // indirect
+	github.com/savsgio/gotils v0.0.0-20220530130905-52f3993e8d6d // indirect
+	github.com/tinylib/msgp v1.1.6 // indirect
+	github.com/valyala/bytebufferpool v1.0.0 // indirect
+	github.com/valyala/fasthttp v1.44.0 // indirect
+	github.com/valyala/tcplisten v1.0.0 // indirect
+)
+
+require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.8.2
@@ -24,7 +41,7 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
-	github.com/mattn/go-isatty v0.0.16 // indirect
+	github.com/mattn/go-isatty v0.0.17 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect

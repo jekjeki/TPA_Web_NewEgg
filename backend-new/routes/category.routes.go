@@ -16,4 +16,5 @@ func NewRouteCategoryController(categoryController controllers.CategoryControlle
 func (cc *CategoryRouteController) CategoryRoute(rg *gin.RouterGroup) {
 	router := rg.Group("category")
 	router.GET("/categories", cc.CategoryRouteController.GetAllCategory)
+	router.GET("/popular-categories", cc.CategoryRouteController.GetPopularCategory)
 }

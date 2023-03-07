@@ -1,0 +1,62 @@
+.wrap-subscribe-email{
+    width: 90%;
+    // background-color: #f7f7f7;
+    padding: 0 30px;
+    border: 1px solid #eeee;
+    border-radius: 5px;
+    // background-color: #f7f7f7;
+    margin: 10px 30px 30px 30px;
+    display: flex;
+    justify-content: space-between;
+    .input-email{
+        padding: 10px;
+        background-color: #e8ecfc;
+        border-radius: 10px;
+        width: 55%;
+        .header{
+            margin-left: 30px;
+        }
+        .wrap-input-email{
+            
+            // width: 55%;
+            padding: 5px 30px 50px 30px;
+            
+            input{
+                width: 95%;
+                padding: 8px;
+            }
+            .input-email{
+                display: flex;
+                button{
+                    border: none;
+                    background-color: #537FE7;
+                    color: white;
+                    border-radius: 0 10px 10px 0;
+                }
+            }
+        }
+    }
+    .download-app{
+        background-color: #e8ecfc;
+        padding: 5px 30px 50px 30px;;
+        border-radius: 10px;
+        .wrap-input{
+            display: flex;
+            width: 100%;
+            input{
+                width: 95%;
+                padding: 8px;
+            }
+           .input-phone{
+            display: flex;
+            margin-top: 40px;
+            button{
+                border: none;
+                background-color: #537FE7;
+                color: white;
+                border-radius: 0 10px 10px 0;
+            }
+           }
+        }
+    }
+}

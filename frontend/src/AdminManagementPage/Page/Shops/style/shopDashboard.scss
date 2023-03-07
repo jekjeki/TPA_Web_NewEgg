@@ -1,0 +1,45 @@
+.wrap-shop-dashboard-menu{
+   display: flex;
+   justify-content: center;
+
+   .menus{
+    margin-top: 30px;
+    min-width: 500px;
+    background-color: #ddd;
+    border-radius: 3px;
+    border: 1px solid black;
+    
+
+    a{
+        text-decoration: none;
+        color: black;
+    }
+
+    .wrap-add-shop{
+        padding: 10px;
+        cursor: pointer;
+    }
+    .wrap-view-shop{
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .wrap-update-shop-status{
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .wrap-add-shop:hover{
+        background-color: rgb(241, 184, 77);
+    }
+
+    .wrap-view-shop:hover{
+        background-color: rgb(241, 184, 77);
+    }
+
+    .wrap-update-shop-status:hover{
+        background-color: rgb(241, 184, 77);
+    }
+
+   }
+}

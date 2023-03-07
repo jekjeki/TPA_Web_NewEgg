@@ -1,0 +1,32 @@
+.wrap-uplaod-image-promotions{
+    .wrap-input-image{
+        display: flex;
+        justify-content: center;
+    }
+
+    .wrap-list-promotions{
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        .wrap-image{
+
+            margin-top: 30px;
+            img{
+                width: 400px;
+            }
+          
+
+            .wrp-btn{
+                display: flex;
+                justify-content: center;
+                button{
+                   background-color: orange;
+                   border: none;
+                   padding: 7px;
+                   color: white;
+                   border-radius: 5px;
+                }
+            }
+        }
+    }
+}

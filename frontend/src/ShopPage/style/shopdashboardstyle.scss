@@ -1,0 +1,77 @@
+.wrap-body-dashboard{
+    width: 100%;
+    min-height: 70vh;
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+
+   
+
+    .wrap-box-1{
+        width: 200px;
+        height: 150px;
+        background-color: #1C315E;
+        position: relative;
+        border-radius: 10px;
+        border: 1px solid black;
+        margin: 10px;
+        .warehouse{
+            color: white;
+            width: 30px;
+            height: 30px;
+            margin: 5px 10px;
+        }
+
+        div{
+            position: absolute;
+            bottom: 0;
+            background-color: #EFF5F5;
+            width: 100%;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+
+    .wrap-box-2{
+        width: 200px;
+        height: 150px;
+        background-color: #1C315E;
+        position: relative;
+        border-radius: 10px;
+        border: 1px solid black;
+        margin: 10px;
+        .bookOpen{
+            color: white;
+            width: 30px;
+            height: 30px;
+            margin: 5px 10px;
+        }
+        div{
+            position: absolute;
+            bottom: 0;
+            background-color: #EFF5F5;
+            width: 100%;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+}
+
+.shop-info-name-about{
+    text-align: center;
+    
+}
+
+.wrap-pp{
+    display: flex;
+        justify-content: center;
+    img{
+        width: 50px;
+        height: 50px;
+        
+    }
+}
