@@ -1,0 +1,113 @@
+.wrap-detail-page{
+    display: block;
+    .wrap-flex-product{
+        background-color: #eeee;
+        margin: 20px 40px;
+        display: flex;
+        flex-direction: row;
+        .wrap-img{
+            img{
+                width: 400px;
+                height: 300px;
+            }
+        }
+        .wrap-info{
+            margin: 4px 40px;
+        }
+
+        .wrap-order{
+            width: 500px;
+            .wrap-comp-order{
+                margin-left: 300px;
+                width: 50%;
+                .comp-shop-name{
+                    p{
+                        font-size: 12px;
+                    }
+                }
+                .comp-price{
+                    width: 100%;
+                    p{
+                        justify-content: end;
+                    }
+                }
+
+                .qty-and-cart{
+                    display: flex;
+                    input{
+                        padding: 5px;
+                        width: 70%;
+                    }
+                    button{
+                        padding: 7px;
+                        background-color: #F99417;
+                        border: none;
+                        color: black;
+                        border-radius: 3px;
+                    }
+                }
+
+                .manage-wishlist{
+                    .wrap-compare{
+                        display: flex;
+                        margin-right: 20px;
+                        .wrap-add-to-compare{
+                            display: flex;
+                        }
+                        .alert-price{
+                            display: flex;
+                            .bell{
+                                margin:20px 5px;
+                            }
+                        }
+                    }
+                }
+
+                .add-wish-list{
+                    display: flex;
+                    .wishlist{
+                        margin: 15px 5px;
+                    }
+                }
+
+                .wrap-goto-seller-follow{
+                    margin-top: 50px;
+                    
+                    .header{
+                        text-align: center;
+                        background-color: #93BFCF;
+                        padding: 7px;
+                    }
+                    .comp-store{
+                        .go-seller-follow{
+                            display: flex;
+                            p{
+                                margin-top: 0;
+                                margin-right: 10px;
+                            }
+                            button{
+                                padding: 5px;
+                                border: none;
+                                background-color: #85CDFD;
+                                border-radius: 3px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+    //similar product 
+    .wrap-box-similar{
+        width: 500px;
+        margin: 10px 20px;
+        .body{
+            display: flex;
+            overflow-x: auto;
+        }
+        .wrap-product{
+            margin: 0 20px;
+        }
+    }
+}

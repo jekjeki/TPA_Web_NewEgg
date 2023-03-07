@@ -1,0 +1,47 @@
+.wrap-product-page{
+    .wrap-title{
+        width: 100%;
+        text-align: center;
+    }
+
+    .body-product{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        .wrap-menu{
+            width: 400px;
+            border: 1px solid black;
+            border-radius: 3px;
+            .add-product{
+                padding: 10px;
+            }
+
+            .view-product{
+                padding: 10px;
+            }
+
+            .update-product{
+                padding: 10px;
+            }
+
+            .add-product:hover{
+                background-color: orange;
+            }
+
+            .view-product:hover{
+                background-color: orange;
+            }
+
+            .update-product:hover{
+                background-color: orange;
+            }
+
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+
+    }
+}

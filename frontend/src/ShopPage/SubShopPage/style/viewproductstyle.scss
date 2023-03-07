@@ -1,0 +1,64 @@
+.wrap-table-product{
+    .wrap-title{
+        text-align: center;
+    }
+
+    .select-category{
+        margin: 10px;
+    }
+
+    .table-list-products{
+        display: flex;
+        justify-content: center;
+        .wrap-table{
+            overflow-x: auto;
+            table{
+                border-collapse: collapse;
+                margin: 25px;
+                min-width: 400px;
+                box-shadow: 0 0 20px hsl(0, 0%, 93%);
+                border-radius: 10px;
+                border: 1px solid black;
+               
+                thead{  
+                    background-color: orange;
+                    th{
+                        padding: 10px;
+                    }
+                }
+                tbody{
+                    td{
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .wrap-next-prev-btn{
+        display: flex;
+        justify-content: center;
+        button{
+            padding: 10px;
+            margin: 0 10px;
+        }
+    }
+}
+
+@media screen and (min-width: 375px) {
+    select{
+        display: none;
+    }
+    .bars{
+        display: inline;
+    }
+}
+
+@media screen and (min-width: 731px) {
+    .bars{
+        display: none;
+    }
+    select{
+        display: block;
+    }
+}

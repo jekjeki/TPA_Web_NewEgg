@@ -1,0 +1,51 @@
+.shop-footer{
+    .wrap-footer{
+        border: 1px solid #EEEEEE;
+        margin: auto;
+        display: flex;
+        padding: 0 20px;
+        justify-content: space-between;
+        background-color: #F2CD5C;
+        .wrap-newegg-info{
+            max-width: 300px;
+    
+            .wrap-address{
+                display: flex;
+                margin: 12px;
+                p{
+                    margin: 0 5px;
+                }
+            }
+        }
+        .wrap-email{
+            display: flex;
+            margin: 12px;
+            p{
+                margin: 0 5px;
+            }
+        }
+        .wrap-phone{
+            display: flex;
+            margin: 12px;
+            p{
+                margin: 0 5px;
+            }
+        }
+        p{
+            margin: 10px;
+        }
+
+    }
+
+
+    .wrap-copyright{
+        text-align: center;
+        background-color: black;
+        color: white;
+        padding: 7px;
+        h4{
+            margin: 0;
+        }
+    }
+
+}

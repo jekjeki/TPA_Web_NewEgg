@@ -1,0 +1,27 @@
+.wrap-popular-category{
+    margin-top: 140px;
+    padding: 0 30px;
+    border: 1px solid #eeee;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    margin-bottom: 30px;
+
+    .wrap-box-category{
+        overflow-x: auto;
+        
+        .wrap-image{
+            display: flex;
+            img{
+                max-width: 90px;
+                min-height: 90px;
+                padding: 0 20px;
+            }
+        }
+        .wrap-title{
+            display: flex;
+        }
+        .box-popular{
+            margin: 0 20px;
+        }
+    }
+}

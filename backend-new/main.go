@@ -30,6 +30,12 @@ var (
 
 	AdminController      controllers.AdminController
 	AdminRouteController routes.AdminRouteController
+
+	StoreController      controllers.StoreController
+	StoreRouteController routes.StoreRouteController
+
+	CartController      controllers.CartController
+	CartRouteController routes.CartRouteController
 )
 
 func init() {
@@ -58,6 +64,12 @@ func init() {
 	AdminController = controllers.NewAdminController(initializers.DB)
 	AdminRouteController = routes.NewAdminRouteController(AdminController)
 
+	StoreController = controllers.NewStoreController(initializers.DB)
+	StoreRouteController = routes.NewRouteStoreController(StoreController)
+
+	CartController = controllers.NewCartController(initializers.DB)
+	CartRouteController = routes.NewRouteCartController(CartController)
+
 	server = gin.Default()
 }
 
@@ -80,10 +92,13 @@ func main() {
 	})
 
 	authRouteController.AuthRoute(router)
+	UserRouteController.UserRoute(router)
 	CategoryRouteController.CategoryRoute(router)
 	ProductRouteController.ProductRoute(router)
 	VoucherRouteController.VoucherRoute(router)
 	AdminRouteController.AdminRoute(router)
+	StoreRouteController.StoreRoute(router)
+	CartRouteController.CartRoute(router)
 
 	log.Fatal(server.Run(":" + config.ServerPort))
 }

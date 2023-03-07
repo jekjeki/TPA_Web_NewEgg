@@ -128,6 +128,67 @@ func (ac *AuthController) SignInUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"status": "success", "access_token": access_token, "firstname": user.FirstName, "lastname": user.LastName, "role": user.Role})
 }
 
+// Sign in Email as Shop
+func (ac *AuthController) ShopSigninEmail(ctx *gin.Context) {
+	var payload *models.ShopSigninEmail
+	var shop models.Shop
+
+	if err := ctx.ShouldBindJSON(&payload); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
+		return
+	}
+
+	result := ac.DB.First(&shop, "shop_email = ?", strings.ToLower(payload.ShopEmail))
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": "Invalid email or Password"})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "shop_email": shop.ShopEmail, "shop_name": shop.ShopName})
+}
+
+// login as shop
+func (ac *AuthController) LoginShop(ctx *gin.Context) {
+	var payload *models.ShopLoginInput
+
+	if err := ctx.ShouldBindJSON(&payload); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
+		return
+	}
+
+	var shops models.Shop
+
+	result := ac.DB.Where("shop_email = ? AND shop_password = ?", payload.ShopEmail, payload.ShopPassword).First(&shops)
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": "Invalid email or Password"})
+		return
+	}
+
+	config, _ := initializers.LoadConfig(".")
+
+	// Generate Tokens
+	access_token, err := utils.CreateToken(config.AccessTokenExpiresIn, shops.ShopID, config.AccessTokenPrivateKey)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
+		return
+	}
+
+	refresh_token, err := utils.CreateToken(config.RefreshTokenExpiresIn, shops.ShopID, config.RefreshTokenPrivateKey)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
+		return
+	}
+
+	ctx.SetCookie("access_token", access_token, config.AccessTokenMaxAge*60, "/", "localhost", false, true)
+	ctx.SetCookie("refresh_token", refresh_token, config.RefreshTokenMaxAge*60, "/", "localhost", false, true)
+	ctx.SetCookie("logged_in", "true", config.AccessTokenMaxAge*60, "/", "localhost", false, false)
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "access_token": access_token, "shopname": shops.ShopName, "shopemail": shops.ShopEmail, "shopid": shops.ShopID, "shopstatus": shops.ShopStatus})
+
+}
+
 // [...] Refresh Access Token
 func (ac *AuthController) RefreshAccessToken(ctx *gin.Context) {
 	message := "could not refresh access token"
@@ -164,4 +225,10 @@ func (ac *AuthController) RefreshAccessToken(ctx *gin.Context) {
 	ctx.SetCookie("logged_in", "true", config.AccessTokenMaxAge*60, "/", "localhost", false, false)
 
 	ctx.JSON(http.StatusOK, gin.H{"status": "success", "access_token": access_token})
+}
+
+// logout users
+func (ac *AuthController) LogoutUsers(ctx *gin.Context) {
+	ctx.SetCookie("access_token", "", -1, "/", "localhost", false, true)
+	ctx.JSON(http.StatusOK, gin.H{"status": "success"})
 }

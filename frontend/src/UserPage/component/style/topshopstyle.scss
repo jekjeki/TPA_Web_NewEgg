@@ -1,0 +1,53 @@
+.top-shop-comp{
+    width: 90%;
+    background-color: #f7f7f7;
+    padding: 0 30px;
+    border: 1px solid #eeee;
+    border-radius: 5px;
+    margin: 10px 30px 30px 30px;
+
+    .body{
+        .image-top{
+            display: flex;
+            .image-top-1{
+                margin: 5px 140px;
+                img{
+                    width: 100px;
+                    height: 80px;
+                }
+            }
+            .image-top-2{
+                margin: 5px 140px;
+                img{
+                    width: 100px;
+                    height: 80px;
+                }
+            }
+            .image-top-3{
+                margin: 5px 140px;
+                img{
+                    width: 100px;
+                    height: 80px;
+                }
+            }
+            
+        }
+        .data-db{
+            display: flex;
+
+           
+            .wrap-card{
+                padding: 5px 8px;
+                min-width: 300px;
+                min-height: 200px;
+                margin: 10px 50px;
+
+                a{
+                    text-decoration: none;
+                    color: black;
+                }
+                
+            }
+        }
+    }
+}
