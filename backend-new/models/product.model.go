@@ -41,3 +41,32 @@ type UpdateProductInput struct {
 	ProductDetail      string  `json:"productdetail" binding:"required"`
 	ShopEmail          string  `json:"storeemail" binding:"required"`
 }
+
+// my wishlist add all products to cart
+type MyWishlistAddProductstoCartInput struct {
+	CartID    string `json:"cart_id" binding:"required"`
+	ProductID string `json:"product_id" binding:"required"`
+	UserID    string `json:"user_id" binding:"required"`
+	Qty       int    `json:"total_qty" binding:"required"`
+}
+
+// display data in follow wishlist
+type DisplayProductFollowWishlist struct {
+	WishlistID  string `json:"wishlist_id"`
+	ProductID   string `json:"product_id"`
+	ProductName string `json:"product_name"`
+	Totalprice  int    `json:"total_price"`
+}
+
+// select product name, product price, product review | shop product page
+type ShowProductDataAndReview struct {
+	ProductID    string  `json:"product_id"`
+	ProductName  string  `json:"product_name"`
+	ProductPrice int     `json:"product_price"`
+	ReviewValue  float32 `json:"review_value"`
+}
+
+// count total users give review to products shop
+type CountUserGiveReview struct {
+	UserID string `json:"user_id"`
+}

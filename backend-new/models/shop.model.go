@@ -57,3 +57,8 @@ type EmailInputProduct struct {
 type ShopIdDisplayInformationInput struct {
 	ShopID *string `json:"shopid" binding:"required"`
 }
+
+// Main menu | Show Top Shops
+type ShopTopShopsResponse struct {
+	ShopName string `json:"shop_name"`
+}

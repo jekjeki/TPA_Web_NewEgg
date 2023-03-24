@@ -258,3 +258,211 @@ func (sc *StoreController) StoreLogout(ctx *gin.Context) {
 	ctx.SetCookie("access_token", "", -1, "/", "localhost", false, true)
 	ctx.JSON(http.StatusOK, gin.H{"status": "success"})
 }
+
+// Show TopShop | Main menu
+func (sc *StoreController) ShowTopShops(ctx *gin.Context) {
+	var topshop []models.Shop
+
+	result := sc.DB.Limit(3).Where("wt.totalqty >= 1").Joins("join storetransactions st ON st.shop_id = shops.shop_id").Joins("join wishlisttransactions wt ON st.shop_id=wt.shop_id").Find(&topshop)
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "error": result.Error.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "top_shops": topshop})
+
+}
+
+// show all categories sold by the shop
+func (sc *StoreController) DisplayAllCategoriesSold(ctx *gin.Context) {
+	var categories []models.Category
+
+	shopid := ctx.Param("shopid")
+
+	result := sc.DB.Distinct("categories.category_name").Where("st.shop_id = ?", shopid).Joins("join products pr ON pr.category_id = categories.id").Joins("join storetransactions st ON pr.product_id = pr.product_id").Find(&categories)
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "error": result.Error.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "categories": categories})
+}
+
+// show product recomendations | shop Page ( user )
+func (sc *StoreController) ShowProductRecommend(ctx *gin.Context) {
+	var products []models.Product
+
+	shopid := ctx.Param("shopid")
+
+	result := sc.DB.Distinct("products.product_id, products.product_name, products.product_price").Where("c. qty > 1 AND st.shop_id = ?", shopid).Joins("join carts c ON c.product_id = products.product_id").Joins("join storetransactions st ON st.product_id = products.product_id").Find(&products)
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "error": result.Error.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "products": products})
+
+}
+
+// display undisplay shop if shop status is banned
+func (sc *StoreController) GetShopStatus(ctx *gin.Context) {
+	var shop models.Shop
+
+	shopid := ctx.Param("shopid")
+
+	result := sc.DB.Where("shop_id = ?", shopid).Find(&shop)
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "error": result.Error.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "shop": shop})
+}
+
+// shop products page | paginate product
+type PaginationData struct {
+	NextPage int
+	PrevPage int
+	CurrPage int
+}
+
+func (sc *StoreController) GetAllProductsShopProductPage(ctx *gin.Context) {
+	var products []models.Product
+
+	shopid := ctx.Param("shopid")
+
+	s := ctx.Query("s")
+
+	// get page number
+	pageNumber := ctx.Param("page")
+	page, _ := strconv.Atoi(pageNumber)
+	offset := (page - 1) * 10
+
+	// search != " "
+	if s != "" {
+		result := sc.DB.Limit(10).Where("st.shop_id = ? AND products.product_name LIKE ? ", shopid, "%"+s+"%").Joins("join storetransactions st ON products.product_id = st.product_id").Offset(offset).Find(&products)
+
+		if result.Error != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "error": result.Error.Error()})
+			return
+		}
+
+		ctx.JSON(http.StatusOK, gin.H{"status": "success", "data": gin.H{
+			"products": products,
+			"pagination": PaginationData{
+				NextPage: page + 1,
+				PrevPage: page - 1,
+				CurrPage: page,
+			},
+		}})
+
+		return
+
+	}
+
+	result := sc.DB.Limit(10).Where("st.shop_id = ?", shopid).Joins("join storetransactions st ON products.product_id = st.product_id").Offset(offset).Find(&products)
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "failed", "error": result.Error.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "data": gin.H{
+		"products": products,
+		"pagination": PaginationData{
+			NextPage: page + 1,
+			PrevPage: page - 1,
+			CurrPage: page,
+		},
+	}})
+
+}
+
+// filter products by the rating
+func (sc *StoreController) FilterProductsByRatingShopPage(ctx *gin.Context) {
+	var products []models.ShowProductDataAndReview
+
+	reviewVal := ctx.Param("reviewVal")
+	shopid := ctx.Param("shopid")
+
+	result := sc.DB.Table("products").Where("rv.review_value > ? AND st.shop_id = ?", reviewVal, shopid).Joins("join reviewproducts rv ON rv.product_id=products.product_id").Joins("join storetransactions st ON st.product_id = products.product_id").Scan(&products)
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "error": result.Error.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "products": products})
+
+}
+
+// sort display product price
+func (sc *StoreController) SortProductsPriceShopPage(ctx *gin.Context) {
+	var products []models.ShowProductDataAndReview
+
+	shopid := ctx.Param("shopid")
+
+	result := sc.DB.Table("products pr").Where("st.shop_id = ?", shopid).Order("product_price asc").Select("pr.product_id, pr.product_name, pr.product_price, rv.review_value").Joins("join reviewproducts rv ON rv.product_id=pr.product_id").Joins("join storetransactions st ON pr.product_id = st.product_id").Scan(&products)
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "error": result.Error.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "products": products})
+}
+
+// sort display product by rating
+func (sc *StoreController) SortProductsByRatingShopPage(ctx *gin.Context) {
+	var products []models.ShowProductDataAndReview
+
+	shopid := ctx.Param("shopid")
+
+	result := sc.DB.Table("products pr").Where("st.shop_id = ?", shopid).Order("rv.review_value asc").Select("pr.product_id, pr.product_name, pr.product_price, rv.review_value").Joins("join reviewproducts rv ON rv.product_id=pr.product_id").Joins("join storetransactions st ON pr.product_id = st.product_id").Scan(&products)
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "error": result.Error.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "products": products})
+}
+
+// count many user given reviews in products shops
+func (sc *StoreController) CountUsersGiveRating(ctx *gin.Context) {
+	var countusers models.CountUserGiveReview
+
+	shopid := ctx.Param("shopid")
+
+	var count int64
+	result := sc.DB.Table("reviewproducts rp").Where("st.shop_id = ?", shopid).Select("rp.user_id").Joins("join products pr ON pr.product_id=rp.product_id").Joins("join storetransactions st ON st.product_id=pr.product_id").Scan(&countusers).Count(&count)
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "error": result.Error.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "count_result": count})
+}
+
+// display average of product rating
+func (sc *StoreController) ShowAverageProductRating(ctx *gin.Context) {
+
+	var reviews models.ReviewProdModelAvg
+
+	shopid := ctx.Param("shopid")
+
+	result := sc.DB.Table("reviewproducts rp").Select("AVG(review_value) as avg").Where("shop_id = ?", shopid).Joins("join products pr ON pr.product_id=rp.product_id").Joins("join storetransactions st ON st.product_id=pr.product_id").Scan(&reviews)
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "error": result.Error.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "average": reviews})
+
+}

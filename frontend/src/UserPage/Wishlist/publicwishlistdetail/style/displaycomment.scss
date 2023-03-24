@@ -1,0 +1,18 @@
+.wrap-display-comment{
+    .box-comment{
+        border: 1px solid #EEEEEE;
+        width: 100%;
+        margin: 10px 0;
+
+        .wrap-name-review{
+            display: flex;
+            .review-val{
+                margin: 0 10px;
+            }
+        }
+        .wrap-name{
+            font-weight: bold;
+            
+        }
+    }
+}

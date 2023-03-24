@@ -12,12 +12,12 @@ export default function () {
                         <h4>CUSTOMER SERVICE</h4>
                     </div>
                     <div className='body'>
-                        <p>Help Center</p>
+                        <Link to={'/help-center'}><p>Help Center</p></Link>
                         <p>Track an Order</p>
                         <p>Return an Item</p>
-                        <p>Return Policy</p>
-                        <p>Privacy & Security</p>
-                        <p>Feedback</p>
+                        <Link to={'/return-policy'}><p>Return Policy</p></Link>
+                        <Link to={'/privacy-security'}><p>Privacy & Security</p></Link>
+                        <Link to={'/feedback'}><p>Feedback</p></Link>
                     </div>
                 </div>
                 <div className='my-account'>
@@ -25,11 +25,11 @@ export default function () {
                         <h4>MY ACCOUNT</h4>
                     </div>
                     <div className='body'>
-                        <p>Login/Register</p>
+                        <Link to={'/signin'}><p>Login/Register</p></Link>
                         <p>Order History</p>
                         <p>Returns History</p>
-                        <p>Address Book</p>
-                        <p>Wish Lists</p>
+                        <Link to={'/address-book'}><p>Address Book</p></Link>
+                        <Link to={'/wish-list'}><p>Wish Lists</p></Link>
                         <p>My Build List</p>
                         <p>My Build Showcase</p>
                         <p>Email Notifications</p>
@@ -42,9 +42,9 @@ export default function () {
                         <h4>COMPANY INFORMATION</h4>
                     </div>
                     <div className='body'>
-                        <p>About Newegg</p>
-                        <p>Investor Relations</p>
-                        <p>Awards/Rankings</p>
+                        <Link to={'/about-newegg'}><p>About Newegg</p></Link>
+                        <Link to={'/investor-relation'}><p>Investor Relations</p></Link>
+                        <Link to={'/award-ranking'}><p>Awards/Rankings</p></Link>
                         <p>Hours and Locations</p>
                         <p>Press Inquiress</p>
                         <p>Newegg Careers</p>

@@ -22,6 +22,23 @@ import UpdateProduct from './ShopPage/SubShopPage/UpdateProduct';
 import UpdateShopInformation from './ShopPage/SubShopPage/UpdateShopInformation';
 import DetailProductUser from './UserPage/component/DetailProductUser';
 import WishList from './UserPage/Wishlist/WishList';
+import ForgotPassword from './Page/ForgotPassword';
+import PublicWishlist from './UserPage/Wishlist/PublicWishlist';
+import Followwishlist from './UserPage/Wishlist/Followwishlist';
+import HelpCenter from './UserPage/FooterComponent/HelpCenter';
+import ReturnPolicy from './UserPage/FooterComponent/ReturnPolicy';
+import PrivacySecurity from './UserPage/FooterComponent/PrivacySecurity';
+import Feedback from './UserPage/FooterComponent/Feedback';
+import AddressBook from './UserPage/FooterComponent/AddressBook';
+import InvestorRelation from './UserPage/FooterComponent/InvestorRelation';
+import AboutNewegg from './UserPage/FooterComponent/AboutNewegg';
+import AwardRanking from './UserPage/FooterComponent/AwardRanking';
+import PublicWishlistDetail from './UserPage/Wishlist/publicwishlistdetail/PublicWishlistDetail';
+import UserWishlistDet from './UserPage/Wishlist/userwishlistdetail/UserWishlistDet';
+import ShopPage from './UserPage/ShopPage/ShopPage';
+import ShopProductPage from './UserPage/ShopPage/ShopProductPage';
+import ShopReviewPage from './UserPage/ShopPage/ShopReviewPage';
+import ShopAboutPage from './UserPage/ShopPage/ShopAboutPage';
 
 function App() {
   return (
@@ -30,6 +47,7 @@ function App() {
         <Routes>
           <Route path='/signin' element={<Signin />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/signin-password' element={<SigninPassword />} />
           <Route path='/' element={<Home />}/>
           <Route path='/admin-dashboard' element={<AdminDashboard />}/>
@@ -53,8 +71,46 @@ function App() {
            <Route path='/store-view-product' element={<ViewProduct />}/>
            <Route path='/update-product/:id' element={<UpdateProduct />}/>
            <Route path='/update-shop-information' element={<UpdateShopInformation />}/>
+
+           {/**
+            * wishlist 
+            */}
            <Route path='/detail-product/:id' element={<DetailProductUser />}/>
            <Route path='/wish-list' element={<WishList />}/>
+           <Route path='/public-wishlists' element={<PublicWishlist />} />
+
+            {/* Follow wishlist  */}
+            <Route path='/follow-wishlist' element={<Followwishlist />} />
+            
+            {/* 
+            Footer Component 
+           */}
+            <Route path='/help-center' element={<HelpCenter />} />
+            <Route path='/return-policy' element={<ReturnPolicy />}/>
+            <Route path='/privacy-security' element={<PrivacySecurity />}/>
+            <Route path='/feedback' element={<Feedback />}/>
+            <Route path='/address-book' element={<AddressBook/>}/>
+            <Route path='/investor-relation' element={<InvestorRelation />}/>
+            <Route path='/about-newegg' element={<AboutNewegg />}/>
+            <Route path='/award-ranking' element={<AwardRanking />} />
+
+            {/* Public Wishlist Detail  */}
+           <Route path='/public-wishlist-detail/:wishlistid' element={<PublicWishlistDetail />} />
+
+           {/* User wishlist detail  */}
+           <Route path='/user-wishlist-detail/:wihslistid' element={<UserWishlistDet />} />
+        
+           {/* Shop Home Page */}
+           <Route path='/shop-home-page/:shopid' element={<ShopPage />} />
+
+           {/* Shop Product Page */}
+           <Route path='/get-products-in-product-page/:shopid' element={ <ShopProductPage />} />
+            
+            {/* Shop Review Page  */}
+            <Route path='/shop-review-page/:shopid' element={<ShopReviewPage />} />
+
+            {/* Shop ABout Page  */}
+            <Route path='/shop-about-page/:shopid' element={<ShopAboutPage /> } />
         </Routes>
       </Router>
     </div>

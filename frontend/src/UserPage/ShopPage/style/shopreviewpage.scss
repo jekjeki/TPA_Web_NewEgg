@@ -1,0 +1,32 @@
+.wrap-comp-shop-review{
+    .manage-menu{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        background-color: #FFD966;
+        p{
+            margin: 30px 10px;
+        }
+    }
+
+    .header{
+        text-align: center;
+    }
+
+    .body{
+        .summary-of-rating-shops{
+            margin: 20px 15px;
+            padding: 3px 5px;
+            border: 1px solid #D8D8D8;
+            border-radius: 5px;
+            display: flex;
+
+            .wrap-number-give-rating{
+                max-width: 150px;
+                h4{
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

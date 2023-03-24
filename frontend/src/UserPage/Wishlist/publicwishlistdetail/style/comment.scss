@@ -1,0 +1,31 @@
+.wrap-comment{
+    display: 100%;
+    padding: 10px;
+    border: 1px solid #E4DCCF;
+
+    .body{
+        .review{
+            display: flex;
+            margin: 0 10px;
+            .star{
+                width: 30px;
+                height: 20px;
+            }
+        }
+
+
+        .wrap-title-comment{
+            input{
+                padding: 3px;
+                min-width: 200px;
+            }
+        }
+
+        .wrap-button{
+            button{
+                margin: 10px 0;
+            }
+        }
+    }
+
+}

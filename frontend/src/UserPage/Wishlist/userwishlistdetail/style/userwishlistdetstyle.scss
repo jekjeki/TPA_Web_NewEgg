@@ -1,0 +1,90 @@
+.wrap-page{
+    .header-core-page{
+        background-color: #d9d9d9;
+        height: 30%;
+        width: 100%;
+
+        .breadcrumb{
+            margin: 0 10px;
+            div{
+                display: flex;
+            }
+        }
+
+        .header-wish-list{
+            display: flex;
+            h3{
+                margin: 5px 10px;
+            }  
+            p{
+            margin: 5px 10px;
+            }
+        }
+    }
+
+    //body core 
+    .body-core{
+        .header{
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        .wrap-setting{
+            button{
+                float: right;
+            }
+        }
+
+        .addNote{
+           button{
+            margin: 20px 0;
+            float: right;
+            background-color: #d9d9d9;
+            font-weight: bold;
+            border: 1px solid black;
+           }
+        }
+    }
+
+    //body 
+    .body-core{
+        display: flex;
+    }
+
+    .wrap-right-left{
+        display: flex;
+        padding: 10px;
+    }
+
+
+    .image{
+        img{
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    .right{
+        width: 100%;
+        padding: 0 10px;
+
+        .align-right{
+            .wrap-update{
+                display: flex;
+            }
+        }
+    }
+
+    .box{
+        border: 1px solid black;
+        min-height: 80px;
+        min-width: 100%;
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        p{
+            padding: 0;
+            margin: 5px;
+        }
+    }
+}

@@ -1,0 +1,63 @@
+.wrap-page-wishlist{
+    width: 100%;
+    .header-core-page{
+        background-color: #d9d9d9;
+        height: 30%;
+        width: 100%;
+
+        .breadcrumb{
+            margin: 0 10px;
+            div{
+                display: flex;
+            }
+        }
+
+        .header-wish-list{
+            display: flex;
+            h3{
+                margin: 5px 10px;
+            }  
+            p{
+            margin: 5px 10px;
+            }
+        }
+
+        .body{
+            background-color: white;
+            width: 100%;
+            .wrapbox{
+                padding: 30px;
+                border: 1px solid #d9d9d9;
+                .box{
+                    border: 1px solid black;
+                    margin: 10px 0;
+
+                    .header-box{
+                        font-weight: bold;
+                        font-size: 15px;
+                        display: flex;
+                        justify-content: space-between;
+                    }
+
+                    .body-box{
+                        .product{
+                            display: flex;
+                            p{
+                                margin: 0 10px;
+                            }
+                        }
+                    }
+
+                    //follow wishlists
+                    .wrap-follow-duplicate{
+                        display: flex;
+                        float: right;
+                        div{
+                            margin: 0 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,19 +1,17 @@
-import { getDownloadURL, ref } from 'firebase/storage'
+import { getDownloadURL, listAll, ref } from 'firebase/storage'
 import React, { useEffect, useState } from 'react'
-import { storage } from '../../firebase/firebase'
-import './style/topshopstyle.scss'
 import { Link } from 'react-router-dom'
+import { storage } from '../../firebase/firebase'
+import './style/wrapTopShop.scss'
 
 export default function TopShop() {
 
-    const [topShop, setTopShop] = useState<any[]>([])
+    const [topShops, setTopShops] = useState<any[]>([])
+    const [imageProfiles, setImageProfiles] = useState<any[]>([])
 
-    const [imageTop1, setImageTop1] = useState<any>('')
-    const [imageTop2, setImageTop2] = useState<any>('')
-    const [imageTop3, setImageTop3] = useState<any>('')
-
-    const getTopShop = async () => {
-        await fetch("http://localhost:8000/api/product/top-shop-home", {
+    // get top shop data 
+    const getTopShopData = async () => {
+        await fetch("http://localhost:8000/api/store/display-top-shops", {
             method: 'GET',
             headers: {
                 'Content-type':'application/json'
@@ -21,65 +19,54 @@ export default function TopShop() {
         })
         .then((res)=>res.json())
         .then((data)=>{
-            setTopShop(data.products)
+            setTopShops(data.top_shops)
         })
     }
 
-    const topshop1 = ref(storage, 'product-images-SP001/Screen Shot 2023-02-26 at 10.06.23.png')
-    const topshop3 = ref(storage, 'product-images-SP002/fifa23-tpa.jpeg')
-    const topshop2 = ref(storage, 'product-images-SP003/komputer2-tpa.jpeg')
+    //read image top shops
+    const images = ref(storage, "top-shops-mainpage/")
+    const readImageProfile = () => {
+        listAll(images).then((res)=>{
+            res.items.forEach((item)=>{
+                getDownloadURL(item).then((url) =>{
+                    setImageProfiles((prev)=>[...prev, url])
+                    console.log(url)
+                })
+            })
+        })
+    }
 
     useEffect(()=>{
-        getTopShop()
-
-        getDownloadURL(topshop1)
-        .then((url)=>{
-            setImageTop1(url)
-        })
-
-        getDownloadURL(topshop2)
-        .then((url)=>{
-            setImageTop2(url)
-        })
-
-        getDownloadURL(topshop3)
-        .then((url)=>{
-            setImageTop3(url)
-        })
-
+        getTopShopData()
+        readImageProfile()
     }, [])
 
   return (
-    <div className='top-shop-comp'>
-        <div className='header'>
-            <h3>OUR BEST SHOP</h3>
-        </div>
-        <div className='body'>
-            <div className='image-top'>
-                <div className='image-top-1'>
-                    <img src={imageTop1} />
-                </div>
-                <div className='image-top-2'>
-                    <img src={imageTop2} />
-                </div>
-                <div className='image-top-3'>
-                    <img src={imageTop3} />
-                </div>
+    <div>
+        <div className='wrap-top-shop-component'>
+            <div className="header">
+                <h3>OUR TOP SHOP</h3>
             </div>
-            <div className='data-db'>
+            <div className='wrap-shop-profile'>
                 {
-                    topShop.map((tp, idx)=>{
+                    imageProfiles.map((ip, idx)=>{
                         return(
-                            <div key={idx} className='wrap-card'>
-                                <Link to={`/detail-product/${tp.ProductID}`} state={{productid: tp.ProductID, image:(tp.ProductID.trim()==='PR775')?imageTop3:(tp.ProductID.trim()==='PR001')?imageTop2:imageTop1, productname:tp.ProductName, productdesc: tp.ProductDescription, productprice: tp.ProductPrice
-                            , categoryid: tp.CategoryID, qty: tp.Qty }}>
-                                <div>
-                                    <p>{tp.ProductName}</p>
-                                </div>
-                                <div>
-                                    <p>{tp.ProductPrice}</p>
-                                </div>
-                                </Link>
+                            <div key={idx}>
+                                <img src={ip} />
+                            </div>
+                        )
+                    })
+                }
+            </div>
+            <div className='wrap-shops'>
+                {
+                    topShops.map((to, idx) =>{
+                        return(
+                            <div className='wrap-top-shop' key={idx}>
+                                <Link to={`/shop-home-page/${to.ShopID}`} state={{
+                                    shop_id: to.ShopID.trim(),
+                                    shop_name: to.ShopName.trim()
+                                }}><p>{to.ShopName}</p></Link>
                             </div>
                         )
                     })

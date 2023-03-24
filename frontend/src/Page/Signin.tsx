@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NewEggLogo from '../asset/logo/logo-newegg.png'
 import {Link, useNavigate} from 'react-router-dom'
 import googleLogo from '../asset/svg/googlesvg.svg'
 import appleLogo from '../asset/svg/applelogo.svg'
 import FooterLogin from '../component/FooterLogin'
+import './style/signinstyle.scss'
 
 export default function Signin() {
 
@@ -18,6 +19,8 @@ export default function Signin() {
     const [shopName, setShopName] = useState('')
     const [shopEmailStatus, setShopEmailStatus] = useState('')
     const [shopId, setShopId] = useState('')
+
+    const [emailErr, setEmailErr] = useState<boolean>(false)
 
     const navigate = useNavigate()
 
@@ -74,6 +77,35 @@ export default function Signin() {
         
     }
 
+    //send code user email
+    const sendEmailCode = async () => {
+        await fetch("http://localhost:8000/api/auth/forgot-password", {
+            method: 'POST',
+            body: JSON.stringify({
+                email: loginEmail
+            }),
+            headers: {
+                'Content-type':'application/json;charset=UTF-8'
+            },
+        })
+        .then((res)=>res.json())
+        .then((data)=>{
+            console.log(data.data.email_forget.email)
+            console.log(data.data.email_forget.verif_code)
+
+            navigate('/forgot-password', {state: {email: data.data.email_forget.email, code:data.data.email_forget.verif_code}})
+        })
+    }
+
+    //const validate forgot password 
+    const ForgotPassword = async () => {
+        
+        (loginEmail === '')? setEmailErr(true): sendEmailCode()
+
+       
+    }
+
+
 
   return (
     <div>
@@ -87,11 +119,20 @@ export default function Signin() {
             <div className='wrap-email-signin'>
                 <input placeholder='Email Address' id='email-signin' value={loginEmail} onChange={(e)=>setLoginEmail(e.target.value)} />
             </div>
+                {
+                    emailErr === true && (
+                        <div className='wrap-err'>
+                            <div>
+                                <p>The email must be field</p>
+                            </div>
+                        </div>
+                    )
+                }
             <div className='wrap-button-signin'>
                 <button onClick={()=>nextInputPassword()}><Link to={(status=='success')?'/signin-password':'#'}>SIGN IN</Link></button>
             </div>
             <div className='wrap-button-getonetimesignin'>
-                <button>GET ONE-TIME SIGN IN CODE</button>
+                <button onClick={()=>ForgotPassword()}>GET ONE-TIME SIGN IN CODE</button>
             </div>
             <div className='wrap-what-the-one-time'>
                 <p>What's the One-Time Code?</p>
@@ -101,7 +142,7 @@ export default function Signin() {
                     <p>New to Newegg?</p>
                 </div>
                 <div className='wrap-link-signup'>
-                    <Link to={'/signup'}><p>Sign Up</p></Link>
+                    <Link to={(loginEmail === '')?'/signup':''}><p>Sign Up</p></Link>
                 </div>
             </div>
             <div className='wrap-or-page'>

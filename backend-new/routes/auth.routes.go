@@ -23,5 +23,8 @@ func (rc *AuthRouteController) AuthRoute(rg *gin.RouterGroup) {
 	router.POST("/signinemail-shop", rc.authController.ShopSigninEmail)
 	router.POST("/login-shop", rc.authController.LoginShop)
 	router.GET("/users-logout", rc.authController.LogoutUsers)
+	router.POST("/forgot-password", rc.authController.ForgotPassword)
+	router.POST("/onetime-signin-user", rc.authController.LoginByForgotPassword)
+	router.POST("/onetime-signin-shop", rc.authController.ShopLoginByForgotPassword)
 
 }

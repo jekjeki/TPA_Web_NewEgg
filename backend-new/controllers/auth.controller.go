@@ -2,7 +2,10 @@ package controllers
 
 import (
 	"fmt"
+	"math/rand"
 	"net/http"
+	"net/smtp"
+	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -231,4 +234,149 @@ func (ac *AuthController) RefreshAccessToken(ctx *gin.Context) {
 func (ac *AuthController) LogoutUsers(ctx *gin.Context) {
 	ctx.SetCookie("access_token", "", -1, "/", "localhost", false, true)
 	ctx.JSON(http.StatusOK, gin.H{"status": "success"})
+}
+
+// go to forgot password
+func (ac *AuthController) ForgotPassword(ctx *gin.Context) {
+
+	// config, _ := initializers.LoadConfig(".")
+	var payload *models.EmailForgotPasswordInput
+
+	if err := ctx.ShouldBindJSON(&payload); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
+		return
+	}
+
+	sendEmailCode := models.User{
+		Email: payload.Email,
+	}
+
+	//random
+	min := 0
+	max := 9
+
+	num1 := rand.Intn(max-min) + min
+	num2 := rand.Intn(max-min) + min
+	num3 := rand.Intn(max-min) + min
+	num4 := rand.Intn(max-min) + min
+
+	code := strconv.Itoa(num1) + strconv.Itoa(num2) + strconv.Itoa(num3) + strconv.Itoa(num4)
+
+	msg := "Subject:" + "Reset Password Notification!" + "\n" + "The code for sign in login: " + code
+
+	sendEmailCodeResponse := &models.EmailForgotPasswordResponse{
+		Email: sendEmailCode.Email,
+		Code:  code,
+	}
+
+	auth := smtp.PlainAuth(
+		"",
+		"yusufzaki013@gmail.com",
+		"xnodhfnqsjllbijc",
+		"smtp.gmail.com",
+	)
+
+	send := smtp.SendMail(
+		"smtp.gmail.com:587",
+		auth,
+		"yusufzaki013@gmail.com",
+		[]string{sendEmailCodeResponse.Email},
+		[]byte(msg),
+	)
+
+	if send != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": send.Error})
+		return
+	}
+
+	// access_token, err := utils.CreateToken(config.AccessTokenExpiresIn, code, config.AccessTokenPrivateKey)
+	// if err != nil {
+	// 	ctx.AbortWithStatusJSON(http.StatusForbidden, gin.H{"status": "fail", "message": err.Error()})
+	// 	return
+	// }
+
+	// ctx.SetCookie("access_token", access_token, config.AccessTokenMaxAge*60, "/", "localhost", false, true)
+
+	ctx.JSON(http.StatusCreated, gin.H{"status": "success", "data": gin.H{"email_forget": sendEmailCodeResponse}})
+
+}
+
+// const forgot password login as user
+func (ac *AuthController) LoginByForgotPassword(ctx *gin.Context) {
+
+	var payload models.EmailForgotPasswordInput
+
+	if err := ctx.ShouldBindJSON(&payload); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
+		return
+	}
+
+	var user models.User
+	result := ac.DB.First(&user, "email = ?", strings.ToLower(payload.Email))
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": "invalid email"})
+		return
+	}
+
+	config, _ := initializers.LoadConfig(".")
+
+	// Generate Tokens
+	access_token, err := utils.CreateToken(config.AccessTokenExpiresIn, user.ID, config.AccessTokenPrivateKey)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
+		return
+	}
+
+	refresh_token, err := utils.CreateToken(config.RefreshTokenExpiresIn, user.ID, config.RefreshTokenPrivateKey)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
+		return
+	}
+
+	ctx.SetCookie("access_token", access_token, config.AccessTokenMaxAge*60, "/", "localhost", false, true)
+	ctx.SetCookie("refresh_token", refresh_token, config.RefreshTokenMaxAge*60, "/", "localhost", false, true)
+	ctx.SetCookie("logged_in", "true", config.AccessTokenMaxAge*60, "/", "localhost", false, false)
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "access_token": access_token, "firstname": user.FirstName, "lastname": user.LastName, "role": user.Role})
+}
+
+// login by forget password shops
+func (ac *AuthController) ShopLoginByForgotPassword(ctx *gin.Context) {
+
+	var payload *models.ShopSigninEmail
+
+	if err := ctx.ShouldBindJSON(&payload); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
+		return
+	}
+
+	var shop models.Shop
+	result := ac.DB.First(&shop, "shop_email = ?", strings.ToLower(payload.ShopEmail))
+
+	if result.Error != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": "Invalid email or Password"})
+		return
+	}
+
+	config, _ := initializers.LoadConfig(".")
+
+	// Generate Tokens
+	access_token, err := utils.CreateToken(config.AccessTokenExpiresIn, shop.ShopID, config.AccessTokenPrivateKey)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
+		return
+	}
+
+	refresh_token, err := utils.CreateToken(config.RefreshTokenExpiresIn, shop.ShopID, config.RefreshTokenPrivateKey)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"status": "fail", "message": err.Error()})
+		return
+	}
+
+	ctx.SetCookie("access_token", access_token, config.AccessTokenMaxAge*60, "/", "localhost", false, true)
+	ctx.SetCookie("refresh_token", refresh_token, config.RefreshTokenMaxAge*60, "/", "localhost", false, true)
+	ctx.SetCookie("logged_in", "true", config.AccessTokenMaxAge*60, "/", "localhost", false, false)
+
+	ctx.JSON(http.StatusOK, gin.H{"status": "success", "access_token": access_token, "shopname": shop.ShopName, "shopemail": shop.ShopEmail, "shopid": shop.ShopID, "shopstatus": shop.ShopStatus})
+
 }

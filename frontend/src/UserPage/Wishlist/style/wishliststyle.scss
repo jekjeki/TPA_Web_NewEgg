@@ -26,8 +26,47 @@
 
     .body-wishlist{
         width: 100%;
-        height: 300px;
+        min-height: 300px;
         background-color: white;
+
+        .wrap-box-wishlists{
+            
+            .box{
+                margin: 30px;
+                p{
+                    padding: 1px 2px;
+                    text-align: end;
+                }
+
+                .layer1-box{
+                    display: flex;
+                }
+                min-width: 500px;
+                border: 1px solid black;
+
+                .outer-wrap-product{
+                    display: flex;
+                    padding: 3px;
+                    margin-top: 30px;
+                    .wrap-product{
+                        p{
+                            text-align: left;
+                            padding: 5px;
+                        }
+                    }
+                }
+
+                .wrap-total{
+                    display: flex;
+                   font-weight: bold;
+                   float: right;
+                    p{
+                        text-align: end;
+                        
+                    }
+                }
+            }
+        }
         .wrap-btn{
             display: flex;
             padding: 20px 0 0 20px;

@@ -5,9 +5,11 @@ import { useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
-import { getDownloadURL, listAll, ref } from 'firebase/storage'
-import { storage } from '../../firebase/firebase'
+import { getDownloadURL, listAll, ref, uploadBytes, uploadString } from 'firebase/storage'
+import { db, storage } from '../../firebase/firebase'
 import UserFooter from './UserFooter'
+import ModalAddtoWishlist from './ModalAddtoWishlist'
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
 
 export default function DetailProductUser() {
 
@@ -18,6 +20,8 @@ export default function DetailProductUser() {
     const [productdesc, setProductdesc] = useState('')
     const [productprice, setProductprice] = useState(0)
     const [shopName, setShopName] = useState('')
+    const [shopid, setShopid] = useState<string>('')
+    const [userid, setUserid] = useState<string>('')
     const [categoryid, setCategoryid] = useState('')
     const [orderqty, setOrderqty] = useState<any>(0)
 
@@ -30,6 +34,10 @@ export default function DetailProductUser() {
     const [isBanned, setisBanned] = useState<boolean>(false)
 
     const [productqty, setProductqty] = useState(0)
+
+    const [wishlistid, setwishlistid] = useState<string>('')
+
+    const [clickModal, setClickModal] = useState<boolean>(false)
 
     const getData = () => {
         console.log(location.state.productid)
@@ -55,6 +63,7 @@ export default function DetailProductUser() {
 
     }
 
+    //get shop data 
     const getShopData = async () => {
         await fetch(`http://localhost:8000/api/product/get-shop-detail/${location.state.productid}`, {
             method: 'GET',
@@ -64,7 +73,9 @@ export default function DetailProductUser() {
         })
         .then((res)=>res.json())
         .then((data)=>{
+            console.log(data)
             setShopName(data.shop.ShopName)
+            setShopid(data.shop.ShopID)
         })
     }
 
@@ -106,7 +117,9 @@ export default function DetailProductUser() {
         })
         .then((res)=>res.json())
         .then((data)=>{
+            console.log(data)
             setCurrLogin(data.data.user.first_name)
+            setUserid(data.data.user.id)
         })
     }
 
@@ -147,7 +160,42 @@ export default function DetailProductUser() {
 
     }
 
+
+   
+
+
+    //get users wishlist 
+    const getUserWishlist = async () => {
+        await fetch("http://localhost:8000/api/wishlist/add-to-wishlist", {
+            method: 'POST',
+            body: JSON.stringify({
+                userid: userid
+            }),
+            headers: {
+                'Content-type':'application/json;charset=UTF-8'
+            }
+        })
+        .then((res)=>res.json())
+        .then(async (data)=>{
+            console.log(data)
+            console.log(data.wishlist[0].WishlistID)
+            setwishlistid(data.wishlist[0].WishlistID)
+            setClickModal(true)
+
+
+            const docRef = await addDoc(collection(db, `wishlist-image-url-${data.wishlist[0].WishlistID}-${userid}-${location.state.productid}`), {
+                productid: location.state.productid,
+                url: location.state.image
+            });
+            console.log(docRef.id)
+        })
+
+
+
+    }
+
     const categoryListImage = () => {
+        
         console.log(categoryid)
         console.log(`image-product-category-${location.state.categoryid}/`)
         const imageListRef = ref(storage, `image-product-category-${location.state.categoryid.trim()}/`)
@@ -172,6 +220,13 @@ export default function DetailProductUser() {
         {
             (isBanned===false) ? (
             <div className='wrap-detail-page'>
+                {
+                    clickModal === true && (
+                        <ModalAddtoWishlist productid={productid} shopid={shopid} wishlistid={wishlistid} 
+                        productprice={productprice} />
+                    )
+                }
+               
                 <div className='wrap-flex-product'>
                     <div className='wrap-img'>
                         <img src={image} />
@@ -213,7 +268,7 @@ export default function DetailProductUser() {
                                 </div>
                                 <div className='add-wish-list'>
                                     <FontAwesomeIcon icon={faHeart} className='wishlist' />
-                                    <p>Add to List</p>
+                                    <p onClick={()=>getUserWishlist()}>Add to List</p>
                                 </div>
                             </div>
                             <div className='wrap-goto-seller-follow'>

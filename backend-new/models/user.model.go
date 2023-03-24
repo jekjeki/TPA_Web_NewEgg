@@ -42,3 +42,12 @@ type UserResponse struct {
 	LastName  string `json:"last_name,omitempty"`
 	Role      string `json:"role,omitempty"`
 }
+
+type EmailForgotPasswordInput struct {
+	Email string `json:"email" binding:"required"`
+}
+
+type EmailForgotPasswordResponse struct {
+	Email string `json:"email,omitempty"`
+	Code  string `json:"verif_code,omitempty"`
+}

@@ -24,6 +24,7 @@ func (uc *UserController) GetMe(ctx *gin.Context) {
 	userResponse := &models.UserResponse{
 		FirstName: currentUser.FirstName,
 		LastName:  currentUser.LastName,
+		ID:        currentUser.ID,
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{"status": "success", "data": gin.H{"user": userResponse}})

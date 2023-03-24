@@ -1,0 +1,29 @@
+.wrap-top-shop-component{
+    margin: 10px 30px 30px 30px;
+    background-color: #f7f7f7;
+    padding: 0 30px;
+    border: 1px solid #eeee;
+
+    a{
+        color: black;
+        text-decoration: none;
+    }
+
+    .wrap-shop-profile{
+        display: flex;
+        min-width: 70px;
+        min-height: 70px;
+        justify-content: center;
+        img{
+            margin: 0 20px;
+        }
+    }
+
+    .wrap-shops{
+        display: flex;
+        justify-content: center;
+        .wrap-top-shop{
+            margin: 0 30px;
+        }
+    }
+}

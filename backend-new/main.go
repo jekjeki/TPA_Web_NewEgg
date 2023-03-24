@@ -36,6 +36,15 @@ var (
 
 	CartController      controllers.CartController
 	CartRouteController routes.CartRouteController
+
+	WishlistController      controllers.WishlistController
+	WishlistRouteController routes.WishlistRouteController
+
+	FeedbackController      controllers.FeedbackController
+	FeedbackRouteController routes.FeedbackRouteController
+
+	NotesController      controllers.NotesController
+	NotesRouteController routes.NotesRouteController
 )
 
 func init() {
@@ -70,6 +79,15 @@ func init() {
 	CartController = controllers.NewCartController(initializers.DB)
 	CartRouteController = routes.NewRouteCartController(CartController)
 
+	WishlistController = controllers.NewWishlistController(initializers.DB)
+	WishlistRouteController = routes.NewRouteWishlistController(WishlistController)
+
+	FeedbackController = controllers.NewFeedbackController(initializers.DB)
+	FeedbackRouteController = routes.NewRouteFeedbackController(FeedbackController)
+
+	NotesController = controllers.NewNotesController(initializers.DB)
+	NotesRouteController = routes.NewRouteNotesController(NotesController)
+
 	server = gin.Default()
 }
 
@@ -99,6 +117,9 @@ func main() {
 	AdminRouteController.AdminRoute(router)
 	StoreRouteController.StoreRoute(router)
 	CartRouteController.CartRoute(router)
+	WishlistRouteController.WishlistRoute(router)
+	FeedbackRouteController.FeedbackRoute(router)
+	NotesRouteController.NotesRoute(router)
 
 	log.Fatal(server.Run(":" + config.ServerPort))
 }

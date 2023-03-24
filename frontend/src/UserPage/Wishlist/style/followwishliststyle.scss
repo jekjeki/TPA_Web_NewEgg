@@ -1,0 +1,60 @@
+.wrap-page-follow-wishlist{
+    width: 100%;
+    .header-core-page{
+        background-color: #d9d9d9;
+        height: 30%;
+        width: 100%;
+        
+    }
+
+    .breadcrumb{
+        margin: 0 10px;
+        div{
+            display: flex;
+        }
+    }
+
+
+    .header-wish-list{
+        display: flex;
+        h3{
+            margin: 5px 10px;
+        }
+       p{
+        margin: 5px 10px;
+       }
+    }
+
+
+    .wrap-comp-wishlist{
+        .box-wishlist{
+            border: 1px solid black;
+            margin: 20px 10px;
+
+            .inside-body1{
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .body{
+                .wrap-products{
+                    display: flex;
+                    margin: 0 10px;
+                    width: 100%;
+                    p{
+                        margin: 0 20px;
+                    }
+                }
+
+                .unfollow-wishlist{
+                    p:hover{
+                        background-color: orange;
+                    }
+                }
+
+            }
+        }
+    }
+
+
+}
